@@ -2,10 +2,43 @@
  * Created by j.frank on 2018/2/12 0012.
  */
 
-$sidebar-background-color:#ababab;
+$sidebar-background-color:rgba(0, 0, 0, .2);
+
+html, body{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 
 .sidebar-box{
   width: 80%;
-  min-height: 100px;
+  min-height: 100%;
   background: $sidebar-background-color;
+  text-align: center;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.sidebar-menu-first{
+  margin-bottom: 50px;
+  height: 60px !important;
+  background: #000;
+  line-height: 60px !important;
+  flex: 1;
+}
+.sidebar-menu-other{
+  background: rgba(0, 0, 0, .5);
+  flex: 1;
+}
+.sidebar-bottom{
+  width: 100%;
+  min-height: 60px;
+  flex: 1;
+  bottom: 0;
+  line-height: 60px;
+  color: #fff;
+  font-size: 30px;
+  margin-top: 30px;
 }

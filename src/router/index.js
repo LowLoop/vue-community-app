@@ -8,8 +8,10 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'sidebar',
+      component:  resolve => {
+        require(['@/views/sidebar.vue'], resolve)
+      }
     },
     {
       path: '/test',
@@ -18,12 +20,5 @@ export default new Router({
         require(['@/views/test.vue'], resolve)
       }
     },
-    {
-      path: '/sidebar',
-      name: 'sidebar',
-      component:  resolve => {
-        require(['@/views/sidebar.vue'], resolve)
-      }
-    }
   ]
 })
