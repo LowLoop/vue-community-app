@@ -9,7 +9,7 @@
     <cell class="sidebar-menu-first">
       <i style="font-size: 26px;" class="icon iconfont icon-yonghu"></i>
     </cell>
-    <cell class="sidebar-menu-other">
+    <cell class="sidebar-menu-other" @click="toList('all')">
       板块
     </cell>
     <cell class="sidebar-menu-other">
@@ -57,8 +57,9 @@
         topcs:null,
         screenX:null,
         styleObj:{
-          position:'inherit',
-          left:0
+          position:'absolute',
+          left:0,
+          display:'none'
         }
       }
     },
@@ -68,6 +69,9 @@
       this.$el.addEventListener('touchend', this.touchend(), false)*/
     },
     methods:{
+      toList(type){
+        this.$router.push({path:'/list',query:{tab:type}})
+      },
       touchstart(e){
         //console.log(e)
         let event = e || window.event
@@ -77,12 +81,11 @@
       touchmove(e){
         let event = e || window.event
         console.log(`${event.touches[0].screenX}--${event.touches[0].screenY}`)
-        //this.styleObj.position = 'absolute'
-        /*if(event.touches[0].screenX < this.screenX){
+        if(event.touches[0].screenX < this.screenX){
           this.styleObj.left = `-${this.screenX - event.touches[0].screenX}px`
         }else{
           this.styleObj.left = `${this.screenX - event.touches[0].screenX}px`
-        }*/
+        }
       },
       touchend(e){
         let event = e || window.event

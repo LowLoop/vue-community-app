@@ -8,9 +8,25 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'sidebar',
+      name: 'index',
+      redirect:'list?tab=all',
       component:  resolve => {
-        require(['@/views/sidebar.vue'], resolve)
+        require(['@/views/index.vue'], resolve)
+      },
+      children:[
+        {
+          path: '/list',
+          component: resolve => {
+            require(['@/views/list.vue'], resolve)
+          },
+        }
+      ]
+    },
+    {
+      path: '/list',
+      name: 'list',
+      component:  resolve => {
+        require(['@/views/list.vue'], resolve)
       }
     },
     {
