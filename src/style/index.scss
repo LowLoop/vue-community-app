@@ -8,10 +8,16 @@ $sidebar-background-color:pink;
 html, body{
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
+}
+li {
+  list-style: none;
 }
 
 .sidebar-box{
+  position: absolute;
+  left: 0;
+  right: 0;
   width: 80%;
   //min-height: 100%;
   background: $sidebar-background-color;
@@ -21,6 +27,7 @@ html, body{
   align-items: center;
   flex-wrap: wrap;
   overflow: hidden;
+  z-index: 999;
 }
 .sidebar-menu-first{
   margin-bottom: 50px;
@@ -42,4 +49,70 @@ html, body{
   color: #fff;
   font-size: 30px;
   margin-top: 30px;
+}
+
+.page{
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-flex-direction:column;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  width: 100%;
+  height: 100%;
+
+  .header{
+    height: 60px;
+    background: pink;
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    line-height: 52px;
+    display: flex;
+    box-sizing: border-box;
+    padding: 4px;
+  }
+
+  .content{
+    position:relative;
+    -ms-flex:1;
+    -webkit-box-flex:1;
+    -webkit-flex:1;
+    flex:1;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+}
+
+.l-radio{
+  border: 2px solid;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.scro-enter-active, .scro-leave-active {
+  transition: width .5s;
+}
+
+.scro-enter, .fade-leave-to {
+  width: 0;
+}
+
+.mask{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, .5);
+  z-index: 998;
 }

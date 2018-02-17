@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section class="content">
     <cell
       v-for="(item, index) in list"
       class="cell-list" :key="index">
@@ -8,7 +8,7 @@
       <badge v-else>{{item.tab}}</badge>
       <div class="author">{{item.author.loginname}}</div>
     </cell>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -1,40 +1,53 @@
 <template>
-  <div
-    :style="styleObj"
-    class="sidebar-box"
-    ref="sidebar"
-    @touchstart="touchstart"
-    @touchmove="touchmove"
-    @touchend="touchend">
-    <cell class="sidebar-menu-first">
-      <i style="font-size: 26px;" class="icon iconfont icon-yonghu"></i>
-    </cell>
-    <cell class="sidebar-menu-other" @click="toList('all')">
-      板块
-    </cell>
-    <cell class="sidebar-menu-other">
-      全部
-    </cell>
-    <cell class="sidebar-menu-other">
-      精华
-    </cell>
-    <cell class="sidebar-menu-other">
-      weex
-    </cell>
-    <cell class="sidebar-menu-other">
-      分享
-    </cell>
-    <cell class="sidebar-menu-other">
-      问答
-    </cell>
-    <cell class="sidebar-menu-other">
-      招聘
-    </cell>
+  <div>
+    <transition-group name="scro">
+      <div
+        key="sidebar"
+        :style="styleObj"
+        class="sidebar-box"
+        ref="sidebar"
+        @touchstart="touchstart"
+        @touchmove="touchmove"
+        @touchend="touchend"
+        v-if="showSidebar">
 
-    <div class="sidebar-bottom">
-      底部底部
-    </div>
+        <cell class="sidebar-menu-first">
+          <i style="font-size: 26px;" class="icon iconfont icon-yonghu"></i>
+        </cell>
+        <cell class="sidebar-menu-other" @click="toList('all')">
+          板块
+        </cell>
+        <cell class="sidebar-menu-other">
+          全部
+        </cell>
+        <cell class="sidebar-menu-other">
+          精华
+        </cell>
+        <cell class="sidebar-menu-other">
+          weex
+        </cell>
+        <cell class="sidebar-menu-other">
+          分享
+        </cell>
+        <cell class="sidebar-menu-other">
+          问答
+        </cell>
+        <cell class="sidebar-menu-other">
+          招聘
+        </cell>
 
+        <div class="sidebar-bottom">
+          底部底部
+        </div>
+      </div>
+
+      <div
+        key="mask"
+        v-if="showSidebar"
+        class="mask"
+        @click="close"></div>
+
+    </transition-group>
   </div>
 </template>
 
@@ -58,9 +71,16 @@
         screenX:null,
         styleObj:{
           position:'absolute',
+          top:0,
           left:0,
-          display:'none'
         }
+      }
+    },
+    props:{
+      showSidebar:{
+        type:Boolean,
+        required:true,
+        default:false
       }
     },
     mounted(){
@@ -69,6 +89,9 @@
       this.$el.addEventListener('touchend', this.touchend(), false)*/
     },
     methods:{
+      close(){
+
+      },
       toList(type){
         this.$router.push({path:'/list',query:{tab:type}})
       },
