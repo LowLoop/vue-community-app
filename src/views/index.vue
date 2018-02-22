@@ -15,16 +15,27 @@
 
     <router-view></router-view>
 
-    <sidebar :showSidebar="isShowSidebar"></sidebar>
+    <sidebar :showSidebar="isShowSidebar" @close="isShowSidebar = false"></sidebar>
 
-    <popup :isShow="showPop" @close="showPop = false">
+    <!--<popup :isShow="showPop" @close="showPop = false">
       <ul>
         <li v-for="item in tabList">
-          <input type="radio" class="l-radio">
-          {{item}}
+          &lt;!&ndash;<input type="radio" class="l-radio">
+          {{item}}&ndash;&gt;
+          <radio :item="item" @radioChange="radioChange">{{item.label}}</radio>
         </li>
       </ul>
-    </popup>
+    </popup>-->
+
+    <transition name="dropDown">
+      <div class="drop-down" v-if="showPop">
+        <ul v-if="showPop">
+          <li v-for="item in tabList">
+            <radio :item="item" @radioChange="radioChange">{{item.label}}</radio>
+          </li>
+        </ul>
+      </div>
+    </transition>
 
   </section>
 </template>
@@ -34,13 +45,15 @@
   import Popup from '@/components/Popup'
   import List from './list.vue'
   import Sidebar from './sidebar.vue'
+  import Radio from '@/components/Radio'
   export default {
     name: 'index',
     components:{
       LHeader,
       List,
       Sidebar,
-      Popup
+      Popup,
+      Radio
     },
     data() {
       return {
@@ -48,12 +61,36 @@
         showPop:false,
         isShowSidebar:false,
         tabList:[
-          '全部',
-          '精华',
-          'weex',
-          '分享',
-          '问答',
-          '招聘'
+          {
+            label:'全部',
+            value:'all',
+            checked:false
+          },
+          {
+            label:'精华',
+            value:'good',
+            checked:false
+          },
+          {
+            label:'weex',
+            value:'weex',
+            checked:false
+          },
+          {
+            label:'分享',
+            value:'share',
+            checked:false
+          },
+          {
+            label:'问答',
+            value:'ask',
+            checked:false
+          },
+          {
+            label:'招聘',
+            value:'job',
+            checked:false
+          }
         ]
       }
     },
@@ -111,6 +148,9 @@
       showTabList(){
         this.showPop = true
       },
+      radioChange(item){
+        item.checked = !item.checked
+      },
       getTitleText(tab){
         let str = ''
         switch (tab){
@@ -144,5 +184,19 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .drop-down{
+    width: 100%;
+    max-height: 500px;
+    background: pink;
+    position: fixed;
+    top: 60px;
+    left: 0;
+  }
+  .dropDown-enter-active, .dropDown-leave-active {
+    transition: max-height .3s;
+  }
 
+  .dropDown-enter, .dropDown-leave-to {
+    max-height: 0;
+  }
 </style>

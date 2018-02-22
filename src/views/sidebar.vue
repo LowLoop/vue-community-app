@@ -1,6 +1,6 @@
 <template>
   <div>
-    <transition-group name="scro">
+    <transition name="scro">
       <div
         key="sidebar"
         :style="styleObj"
@@ -40,14 +40,15 @@
           底部底部
         </div>
       </div>
+    </transition>
 
+    <transition name="scro">
       <div
         key="mask"
         v-if="showSidebar"
         class="mask"
         @click="close"></div>
-
-    </transition-group>
+    </transition>
   </div>
 </template>
 
@@ -90,7 +91,7 @@
     },
     methods:{
       close(){
-
+        this.$emit('close', false)
       },
       toList(type){
         this.$router.push({path:'/list',query:{tab:type}})

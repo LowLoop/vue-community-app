@@ -25,7 +25,7 @@
     height: 50px;
     box-sizing: border-box;
     color: white;
-    line-height: 50px;
+    line-height: 41px;
     border-bottom: 1px solid #fff;
   }
   .cell:hover{

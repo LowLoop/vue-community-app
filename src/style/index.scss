@@ -2,8 +2,8 @@
  * Created by j.frank on 2018/2/12 0012.
  */
 
-$sidebar-background-color:rgba(0, 0, 0, .2);
-$sidebar-background-color:pink;
+$sidebar-background-color:rgba(0, 0, 0, .8);
+//$sidebar-background-color:pink;
 
 html, body{
   margin: 0;
@@ -19,7 +19,7 @@ li {
   left: 0;
   right: 0;
   width: 80%;
-  //min-height: 100%;
+  min-height: 100%;
   background: $sidebar-background-color;
   text-align: center;
   display: flex;
@@ -35,10 +35,12 @@ li {
   background: #000;
   line-height: 60px !important;
   flex: 1;
+  justify-content:center;
 }
 .sidebar-menu-other{
   background: rgba(0, 0, 0, .5);
   flex: 1;
+  justify-content:center;
 }
 .sidebar-bottom{
   width: 100%;
@@ -100,11 +102,12 @@ li {
 }
 
 .scro-enter-active, .scro-leave-active {
-  transition: width .5s;
+  transition: width .3s, opacity .3s;
 }
 
-.scro-enter, .fade-leave-to {
+.scro-enter, .scro-leave-to {
   width: 0;
+  opacity: 0;
 }
 
 .mask{
