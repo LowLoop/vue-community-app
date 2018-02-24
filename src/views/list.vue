@@ -5,7 +5,7 @@
       class="cell-list" :key="index">
       <div class="title">{{item.title.length > 22 ? `${item.title.substr(0, 22)}...` : item.title}}</div>
       <badge v-if="item.top" type="success">置顶</badge>
-      <badge v-else>{{item.tab}}</badge>
+      <badge v-else type="other">{{item.tab}}</badge>
       <div class="author">{{item.author.loginname}}</div>
     </cell>
   </section>
@@ -23,14 +23,19 @@
     },
     data() {
       return {
-        tabType:null,
         list:[],
+        tabType:this.$route.query.tab
+      }
+    },
+    watch:{
+      $route(to, form){
+        console.log(to.path)
+        this.tabType = this.$route.query.tab
+        this.getList()
       }
     },
     mounted(){
-      let tabType = this.$route.query.tab
-      if(tabType && tabType !== 'null'){
-        this.tabType = tabType
+      if(this.tabType && this.tabType !== 'null'){
         this.getList()
       }
     },

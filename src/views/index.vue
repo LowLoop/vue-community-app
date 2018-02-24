@@ -9,7 +9,8 @@
       </div>
       <div @click="showTabList">
         {{titleText}}
-        <i class="icon iconfont icon-jiantouarrow483"></i>
+        <i
+          :class="headIconClass"></i>
       </div>
     </l-header>
 
@@ -60,6 +61,7 @@
         tab:'',
         showPop:false,
         isShowSidebar:false,
+        headIconClass:'icon iconfont icon-jiantouarrow483',
         tabList:[
           {
             label:'全部',
@@ -135,6 +137,14 @@
       }
     },
     mounted(){
+      let tab = this.$route.query.tab
+      if(tab && tab !== 'null'){
+        for (let i of this.tabList){
+          if(i.value === tab){
+            i.checked = true
+          }
+        }
+      }
       /*let tab = this.$route.query.tab
       if(tab && tab !== 'null'){
         this.tab = tab
@@ -146,10 +156,22 @@
         this.isShowSidebar = true
       },
       showTabList(){
-        this.showPop = true
+        if(this.showPop){
+          this.headIconClass = 'icon iconfont icon-jiantouarrow483'
+        }else{
+          this.headIconClass = 'icon iconfont head-arrow'
+        }
+        this.showPop = !this.showPop
       },
       radioChange(item){
         item.checked = !item.checked
+        for (let i of this.tabList){
+          if(i.value !== item.value){
+            i.checked = false
+          }
+        }
+        this.showTabList()
+        this.$router.push({path:'/list',query:{tab:item.value}})
       },
       getTitleText(tab){
         let str = ''
@@ -183,20 +205,5 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .drop-down{
-    width: 100%;
-    max-height: 500px;
-    background: pink;
-    position: fixed;
-    top: 60px;
-    left: 0;
-  }
-  .dropDown-enter-active, .dropDown-leave-active {
-    transition: max-height .3s;
-  }
-
-  .dropDown-enter, .dropDown-leave-to {
-    max-height: 0;
-  }
+<style lang="scss" scoped>
 </style>

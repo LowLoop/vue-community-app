@@ -22,13 +22,13 @@ export default new Router({
         }
       ]
     },
-    {
+    /*{
       path: '/list',
       name: 'list',
       component:  resolve => {
         require(['@/views/list.vue'], resolve)
       }
-    },
+    },*/
     {
       path: '/test',
       name: 'test',

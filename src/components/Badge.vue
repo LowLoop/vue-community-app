@@ -21,8 +21,34 @@
         default:'success'
       },
     },
-    methods:{
+    computed:{
       getStyle(){
+        let style = {}
+        switch (this.type){
+          case 'success':
+            style = {
+              background:'green',
+              color:'white'
+            }
+            break
+          case 'other':
+            style = {
+              background:'#ababab',
+              color:'#727272'
+            }
+            break
+          default:
+            style = {
+              background:'green',
+              color:'white'
+            }
+            break
+        }
+        return style
+      }
+    },
+    methods:{
+      /*getStyle(){
         let style = {}
         switch (this.type){
           case 'success':
@@ -39,7 +65,7 @@
             break
         }
         return style
-      }
+      }*/
     }
   }
 </script>

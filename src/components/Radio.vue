@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <label @click="click">
+  <div @click="click" class="radio">
+    <label style="width: 100%;display: flex">
       <input v-if="false" type="radio" :checked="item.checked" :disabled="disabled">
-      <span style="color: #55a532">
-        <i v-if="!item.checked" class="icon iconfont icon-radio02"></i>
-        <i v-if="item.checked" class="icon iconfont icon-radio"></i>
-      </span>
-      <span>
+      <span style="width: 60%">
         <slot></slot>
+      </span>
+      <span style="color: #55a532;width: 30%;text-align: right">
+        <i v-if="item.checked" class="icon iconfont icon-gouxuan"></i>
+        <i v-else></i>
       </span>
     </label>
   </div>
@@ -43,5 +43,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .radio{
+    display: flex;
+  }
 </style>
