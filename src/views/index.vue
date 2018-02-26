@@ -1,16 +1,19 @@
 <template>
   <section class="page">
     <l-header>
-      <div style="width: 40%;text-align: left">
+      <div style="width: 33.3%;text-align: left">
         <i
           class="icon iconfont icon-gengduo"
           @click="showSidebar"
         ></i>
       </div>
-      <div @click="showTabList">
+      <div style="width: 33.3%" @click="showTabList">
         {{titleText}}
         <i
           :class="headIconClass"></i>
+      </div>
+      <div style="width: 33.3%">
+
       </div>
     </l-header>
 
@@ -30,11 +33,9 @@
 
     <transition name="dropDown">
       <div class="drop-down" v-if="showPop">
-        <ul v-if="showPop">
-          <li v-for="item in tabList">
-            <radio :item="item" @radioChange="radioChange">{{item.label}}</radio>
-          </li>
-        </ul>
+        <div v-if="showPop" class="item" v-for="item in tabList">
+          <radio :item="item" @radioChange="radioChange">{{item.label}}</radio>
+        </div>
       </div>
     </transition>
 
@@ -144,6 +145,8 @@
             i.checked = true
           }
         }
+      }else{
+        this.tabList[0].checked = true
       }
       /*let tab = this.$route.query.tab
       if(tab && tab !== 'null'){

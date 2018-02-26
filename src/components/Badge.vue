@@ -48,24 +48,7 @@
       }
     },
     methods:{
-      /*getStyle(){
-        let style = {}
-        switch (this.type){
-          case 'success':
-            style = {
-              background:'green',
-              color:'white'
-            }
-            break
-          default:
-            style = {
-              background:'green',
-              color:'white'
-            }
-            break
-        }
-        return style
-      }*/
+
     }
   }
 </script>

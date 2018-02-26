@@ -134,18 +134,17 @@ li {
   padding: 10px;
   top: 60px;
   left: 0;
-  ul{
+  .item{
     width: 100%;
-    height: auto;
-    li{
-      margin: 5px 0;
-    }
+    height: 21px;
+    margin: 5px 0;
   }
 }
 .dropDown-enter-active, .dropDown-leave-active {
-  transition: height .5s;
+  transition: height .5s, opacity .5s;
 }
 
 .dropDown-enter, .dropDown-leave-to {
   height: 0;
+  opacity: 0;
 }

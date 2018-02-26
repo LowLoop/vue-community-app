@@ -9,7 +9,7 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      redirect:'list?tab=all',
+      redirect:'/list',
       component:  resolve => {
         require(['@/views/index.vue'], resolve)
       },

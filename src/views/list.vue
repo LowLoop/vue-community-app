@@ -5,7 +5,7 @@
       class="cell-list" :key="index">
       <div class="title">{{item.title.length > 22 ? `${item.title.substr(0, 22)}...` : item.title}}</div>
       <badge v-if="item.top" type="success">置顶</badge>
-      <badge v-else type="other">{{item.tab}}</badge>
+      <badge v-else type="other">{{getTabText(item.tab)}}</badge>
       <div class="author">{{item.author.loginname}}</div>
     </cell>
   </section>
@@ -29,13 +29,16 @@
     },
     watch:{
       $route(to, form){
-        console.log(to.path)
+        //console.log(to.path)
         this.tabType = this.$route.query.tab
         this.getList()
       }
     },
     mounted(){
       if(this.tabType && this.tabType !== 'null'){
+        this.getList()
+      }else{
+        this.tabType = 'all'
         this.getList()
       }
     },
@@ -54,6 +57,33 @@
           .catch(err => {
             console.log(err)
           })
+      },
+      getTabText(tab){
+        let str = ''
+        switch (tab){
+          case 'all':
+            str = '全部'
+            break
+          case 'good':
+            str = '精华'
+            break
+          case 'weex':
+            str = 'weex'
+            break
+          case 'share':
+            str = '分享'
+            break
+          case 'ask':
+            str = '问答'
+            break
+          case 'job':
+            str = '招聘'
+            break
+          default:
+            str = '未知'
+            break
+        }
+        return str
       }
     }
   }

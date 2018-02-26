@@ -1,14 +1,14 @@
 <template>
   <div>
     <transition name="scro">
+      <!--@touchstart="touchstart"
+      @touchmove="touchmove"
+      @touchend="touchend"-->
       <div
         key="sidebar"
         :style="styleObj"
         class="sidebar-box"
         ref="sidebar"
-        @touchstart="touchstart"
-        @touchmove="touchmove"
-        @touchend="touchend"
         v-if="showSidebar">
 
         <cell class="sidebar-menu-first">
