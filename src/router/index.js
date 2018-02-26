@@ -8,16 +8,24 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
+      name: 'layout',
       redirect:'/list',
       component:  resolve => {
-        require(['@/views/index.vue'], resolve)
+        require(['@/views/layout.vue'], resolve)
       },
       children:[
         {
           path: '/list',
+          name:'list',
           component: resolve => {
             require(['@/views/list.vue'], resolve)
+          },
+        },
+        {
+          path: '/topicDetail',
+          name:'topicDetail',
+          component: resolve => {
+            require(['@/views/topicDetail.vue'], resolve)
           },
         }
       ]

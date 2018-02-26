@@ -2,7 +2,8 @@
   <section class="content">
     <cell
       v-for="(item, index) in list"
-      class="cell-list" :key="index">
+      class="cell-list" :key="index"
+      @click.native="toDetail(item.id)">
       <div class="title">{{item.title.length > 22 ? `${item.title.substr(0, 22)}...` : item.title}}</div>
       <badge v-if="item.top" type="success">置顶</badge>
       <badge v-else type="other">{{getTabText(item.tab)}}</badge>
@@ -12,7 +13,7 @@
 </template>
 
 <script>
-  import { getTopcs } from '@/api/api'
+  import { getTopics } from '@/api/api'
   import Cell from '@/components/cell'
   import Badge from '@/components/badge'
   export default {
@@ -50,13 +51,16 @@
           limit:10,
           mdrender:true
         }
-        getTopcs(reqData)
+        getTopics(reqData)
           .then(res => {
             this.list = res.data
           })
           .catch(err => {
             console.log(err)
           })
+      },
+      toDetail(id){
+        this.$router.push({name:'topicDetail', query:{detailId:id}})
       },
       getTabText(tab){
         let str = ''

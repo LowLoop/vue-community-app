@@ -38,7 +38,7 @@
 </template>
 
 <script>
-  import { getTopcs } from '@/api/api'
+  import { getTopics } from '@/api/api'
   export default {
     name: 'test',
     data() {
@@ -54,7 +54,7 @@
       }
     },
     mounted(){
-      /*getTopcs(this.reqData)
+      /*getTopics(this.reqData)
         .then(res => {
           this.topcs = res
         })

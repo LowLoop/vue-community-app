@@ -53,7 +53,7 @@
 </template>
 
 <script>
-  import { getTopcs } from '@/api/api'
+  import { getTopics } from '@/api/api'
   import Cell from '../components/cell'
   export default {
     name: 'sidebar',
@@ -118,8 +118,8 @@
 
         }
       },
-      getTopcs(){
-        getTopcs(this.reqData)
+      getTopics(){
+        getTopics(this.reqData)
           .then(res => {
             this.topcs = res
           })

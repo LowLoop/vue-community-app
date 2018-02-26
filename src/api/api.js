@@ -1,6 +1,6 @@
 import axiosInterceptor from '@/utils/axiosInterceptor'
 
-export function getTopcs(params) {
+export function getTopics(params) {
   return axiosInterceptor({
     url:'/topics',
     method:'get',
@@ -8,11 +8,13 @@ export function getTopcs(params) {
   })
 }
 
-export function getTopcsDetail(params) {
+export function getTopicsDetail(params) {
   return axiosInterceptor({
-    url:`/topics${params.id}`,
+    url:`/topic/${params.id}`,
     method:'get',
-    params:params.mdrender
+    params:{
+      mdrender:params.mdrender
+    }
   })
 }
 
