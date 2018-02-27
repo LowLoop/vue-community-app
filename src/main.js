@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 
 Vue.config.productionTip = false
 
@@ -10,11 +11,16 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(to)
+  console.log(to.path)
+  if(to.path === '/topicDetail'){
+    store.dispatch('setIsIndex', false)
+    next()
+  }
   next()
 })

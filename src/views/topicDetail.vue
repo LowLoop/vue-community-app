@@ -3,12 +3,10 @@
     <div class="topic-title">
       {{detail.title}}
     </div>
-    <div class="topic-other-info">
+    <div v-if="detail.id" class="topic-other-info">
       {{detail.author.loginname}}
     </div>
-    <div class="topic-content" v-html="compiledMarkdown">
-
-    </div>
+    <div class="topic-content" v-html="compiledMarkdown"></div>
   </section>
 </template>
 
@@ -20,16 +18,20 @@
     name: 'topicDetail',
     data() {
       return {
-        detail:''
+        detail:{}
       }
     },
     computed:{
       compiledMarkdown () {
-        return marked(this.detail.content, { sanitize: true })
+        if(this.detail.id){
+          return marked(this.detail.content, { sanitize: true })
+        }else{
+          return ''
+        }
       }
     },
-    mounted(){
-      this.getDetail()
+    async created(){
+      await this.getDetail()
     },
     methods:{
       getDetail(){
@@ -64,6 +66,7 @@
     padding: 10px;
   }
   .topic-other-info{
+    padding-left: 5px;
     font-size: 12px;
     color: #ababab;
   }

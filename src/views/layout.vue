@@ -7,11 +7,16 @@
           @click="showSidebar"
         ></i>
       </div>
-      <div style="width: 33.3%" @click="showTabList">
+
+      <div v-if="isIndex" style="width: 33.3%" @click="showTabList">
         {{titleText}}
         <i
           :class="headIconClass"></i>
       </div>
+      <div v-else style="width: 33.3%">
+        详情
+      </div>
+
       <div style="width: 33.3%">
 
       </div>
@@ -48,8 +53,10 @@
   import List from './list.vue'
   import Sidebar from './sidebar.vue'
   import Radio from '@/components/Radio'
+  import { mapGetters } from 'vuex'
+
   export default {
-    name: 'index',
+    name: 'layout',
     components:{
       LHeader,
       List,
@@ -135,7 +142,10 @@
             break
         }
         return str
-      }
+      },
+      ...mapGetters([
+        'isIndex'
+      ])
     },
     mounted(){
       let tab = this.$route.query.tab
