@@ -11,7 +11,7 @@
       return {
 
       }
-    }
+    },
   }
 </script>
 
@@ -22,10 +22,10 @@
     flex-wrap: wrap;
     min-width: 100%;
     padding: 4px;
-    height: 50px;
+    min-height: 50px;
     box-sizing: border-box;
     color: white;
-    line-height: 41px;
+    /*line-height: 41px;*/
     border-bottom: 1px solid #fff;
   }
   .cell:hover{

@@ -3,9 +3,14 @@
     <l-header>
       <div style="width: 33.3%;text-align: left">
         <i
+          v-if="isIndex"
           class="icon iconfont icon-gengduo"
           @click="showSidebar"
         ></i>
+        <i
+          v-if="!isIndex"
+          class="icon iconfont icon-fanhui"
+          @click="back"></i>
       </div>
 
       <div v-if="isIndex" style="width: 33.3%" @click="showTabList">
@@ -185,6 +190,9 @@
         }
         this.showTabList()
         this.$router.push({path:'/list',query:{tab:item.value}})
+      },
+      back(){
+        this.$router.go(-1)
       },
       getTitleText(tab){
         let str = ''

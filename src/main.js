@@ -18,8 +18,11 @@ new Vue({
 
 router.beforeEach((to, from, next) => {
   console.log(to.path)
-  if(to.path === '/topicDetail'){
+  if(to.path !== '/list'){
     store.dispatch('setIsIndex', false)
+    next()
+  }else{
+    store.dispatch('setIsIndex', true)
     next()
   }
   next()
