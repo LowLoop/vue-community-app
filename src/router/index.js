@@ -41,7 +41,7 @@ export default new Router({
       path: '/test',
       name: 'test',
       component:  resolve => {
-        require(['@/views/test.vue'], resolve)
+        require(['@/views/abrain/components/LTableDrag.vue'], resolve)
       }
     },
   ]
